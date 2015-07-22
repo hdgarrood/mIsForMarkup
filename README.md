@@ -61,7 +61,7 @@ function renderResults(results) {
     results.length === 0
       ? m.p({class: 'error'}, 'No results for that query, sorry')
       : results.map(function(r) {
-          return m.p({class: 'result'}, 
+          return m.p({class: 'result'},
             m.strong(r.book), " by ", m.em(r.author))
         })
     )
@@ -71,12 +71,16 @@ renderResults(
   [ {book: 'Great Expectations', author: 'Dickens'}
   , {book: 'The Wind in the Willows', author: 'Grahame'}
   ])
-  // => <div class="results">
-          <p class="result"><strong>Great Expectations</strong> by <em>Dickens</em></p>
-          <p class="result"><strong>The Wind in the Willows</strong> by <em>Grahame</em></p>
-        </div> 
+  /* =>
+    <div class="results">
+      <p class="result"><strong>Great Expectations</strong> by <em>Dickens</em></p>
+      <p class="result"><strong>The Wind in the Willows</strong> by <em>Grahame</em></p>
+    </div>
+  */
 
 renderResults([])
-  // => <div class="results">
-          <p class="error">No results for that query, sorry</p>
-        </div>
+  /* =>
+    <div class="results">
+      <p class="error">No results for that query, sorry</p>
+    </div>
+  */
