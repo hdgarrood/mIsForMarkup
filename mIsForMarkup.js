@@ -10,6 +10,23 @@ function looksLikeHtmlElement(obj) {
   return obj && obj.nodeType !== undefined
 }
 
+function insertChild(el, child) {
+  if (looksLikeHtmlElement(child)) {
+    el.appendChild(child)
+  } else if (typeof child === 'string') {
+    var textNode = document.createTextNode(child)
+    el.appendChild(textNode)
+  } else if (child instanceof Array) {
+    child.forEach(function(c) {
+      insertChild(el, c)
+    })
+  } else if (child === null) {
+    // no-op
+  } else {
+    throw new Error("mIsForMarkup: Don't know what to do with this object")
+  }
+}
+
 exports.tag = function tag() {
   var args = Array.prototype.slice.call(arguments)
   var tagName = args.shift()
@@ -26,16 +43,7 @@ exports.tag = function tag() {
 
   while (args.length > 0) {
     var child = args.shift()
-    if (looksLikeHtmlElement(child)) {
-      el.appendChild(child)
-    } else if (typeof child === 'string') {
-      var textNode = document.createTextNode(child)
-      el.appendChild(textNode)
-    } else if (child === null) {
-      // no-op
-    } else {
-      throw new Error("mIsForMarkup: Don't know what to do with this object")
-    }
+    insertChild(el, child)
   }
 
   return el
@@ -64,18 +72,12 @@ var tagNames =
   , 'body'
   , 'br'
   , 'button'
-  , 'button'
-  , 'button'
-  , 'button'
   , 'canvas'
   , 'caption'
   , 'cite'
   , 'code'
   , 'col'
   , 'colgroup'
-  , 'command'
-  , 'command'
-  , 'command'
   , 'command'
   , 'datalist'
   , 'dd'
@@ -107,29 +109,6 @@ var tagNames =
   , 'iframe'
   , 'img'
   , 'input'
-  , 'input'
-  , 'input'
-  , 'input'
-  , 'input'
-  , 'input'
-  , 'input'
-  , 'input'
-  , 'input'
-  , 'input'
-  , 'input'
-  , 'input'
-  , 'input'
-  , 'input'
-  , 'input'
-  , 'input'
-  , 'input'
-  , 'input'
-  , 'input'
-  , 'input'
-  , 'input'
-  , 'input'
-  , 'input'
-  , 'input'
   , 'ins'
   , 'kbd'
   , 'keygen'
@@ -139,13 +118,10 @@ var tagNames =
   , 'link'
   , 'map'
   , 'mark'
+  , 'main'
   , 'math'
   , 'menu'
-  , 'meta'
-  , 'meta'
-  , 'meta'
-  , 'meta'
-  , 'meta'
+  , 'menuitem'
   , 'meta'
   , 'meter'
   , 'nav'
@@ -180,6 +156,7 @@ var tagNames =
   , 'table'
   , 'tbody'
   , 'td'
+  , 'template'
   , 'textarea'
   , 'tfoot'
   , 'th'
@@ -201,4 +178,3 @@ tagNames.forEach(function(tagName) {
 
 return exports
 })()
-
