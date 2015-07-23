@@ -2,8 +2,8 @@
 
 Yet another templating library for JavaScript. Sorry not sorry.
 
-SEE ALSO: <npmjs.com/package/hyperscript>, which is more or less a better
-version of this.
+SEE ALSO: <http://npmjs.com/package/hyperscript>, which is more or less a
+better version of this.
 
 ## synopsis
 
