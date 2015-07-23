@@ -24,11 +24,21 @@ document.body.appendChild(
 
 m is for markup:
 
-* Literally could not be simpler (0 dependencies, about 48 lines of actual code)
+* Literally could not be simpler (0 dependencies, about 50 lines of actual
+  code)
 * Trusts you to separate your model from your view
 * Doesn't require you to learn a separate language for templating
 * Allows you to use the full power of JS for templating (eg: partials are just
   functions)
+
+## bower / npm / other ...?
+
+Not at the moment. Just copy it in to your project. Perhaps if you ask nicely I
+might publish this on a package registry like bower or npm or something.
+
+## license
+
+It feels a bit absurd even including one given how tiny this is, but: MIT.
 
 ## api
 
